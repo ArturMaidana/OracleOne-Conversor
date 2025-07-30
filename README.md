@@ -1,93 +1,80 @@
-☕ Conversor de Moedas em Java
-📖 Sobre o Projeto
-Este é um conversor de moedas interativo desenvolvido em Java, que funciona diretamente no console. O projeto utiliza a API da ExchangeRate-API para obter as taxas de câmbio mais recentes em tempo real, garantindo conversões precisas.
+# 💱 Conversor de Moedas com Java e Gson
 
-A aplicação apresenta um menu simples e intuitivo, permitindo que o usuário escolha entre diferentes pares de moedas para conversão e insira o valor desejado.
+Projeto desenvolvido como parte do desafio da formação **Oracle One - Alura**, com o objetivo de construir um **Conversor de Moedas** utilizando **Java**, **API de câmbio** e a biblioteca **Gson** no **IntelliJ IDEA**.
 
-✨ Funcionalidades
-Menu Interativo: Interface de console amigável com um loop de repetição para múltiplas conversões.
+---
 
-Taxas de Câmbio em Tempo Real: Conecta-se a uma API externa para buscar dados atualizados.
+## 🚀 Tecnologias Utilizadas
 
-Conversões Populares: Oferece opções de conversão pré-definidas entre moedas como Dólar (USD), Real Brasileiro (BRL), Euro (EUR) e Peso Argentino (ARS).
+- Java 21
+- API de taxas de câmbio (ex: [ExchangeRate API](https://www.exchangerate-api.com/))
+- Gson (Google)
+- IntelliJ IDEA
 
-Código Limpo e Modular: O código é organizado em métodos que seguem as responsabilidades de cada etapa do processo:
+---
 
-Conexão com a API.
+## 📋 Funcionalidades
 
-Análise da resposta (parsing de JSON).
+- Consulta de taxas de câmbio em tempo real
+- Conversão entre moedas diversas (ex: USD, EUR, BRL etc.)
+- Interface via terminal com menu interativo
+- Utilização de HTTP Client, HTTP Request e HTTP Response
+- Análise e mapeamento de JSON com Gson
 
-Cálculo da conversão.
+---
 
-Interação com o usuário.
+## 🧩 Etapas do Desenvolvimento
 
-🛠️ Tecnologias Utilizadas
-Java 17+: Linguagem principal do projeto.
+### 1. 📡 Integração com a API
 
-Java HttpClient: Cliente HTTP nativo do Java (a partir do Java 11) para realizar as requisições à API.
+- Estudo da documentação da API
+- Geração da chave de acesso
+- Testes de requisição via Postman
 
-Gson: Biblioteca do Google para converter objetos Java em sua representação JSON e vice-versa.
+### 2. 📦 Importação da Biblioteca Gson
 
-🚀 Como Executar o Projeto
-Siga os passos abaixo para configurar e rodar a aplicação em seu ambiente local.
+- Download do arquivo `gson-2.10.1.jar`
+- Adição manual ao projeto:
+  1. Vá em `File > Project Structure > Modules > Dependencies`
+  2. Clique em `+` > `JARs or directories`
+  3. Selecione o `.jar` do Gson
+  4. Marque a opção **"Jar Directory"**
 
-Pré-requisitos
-JDK (Java Development Kit) 17 ou superior instalado.
+### 3. 🌐 Requisições HTTP com Java
 
-IntelliJ IDEA ou outra IDE de sua preferência.
+- Uso do `HttpClient` para enviar requisições
+- Configuração do `HttpRequest` com URL, headers e método `GET`
+- Tratamento de `HttpResponse` com captura do corpo da resposta
 
-Uma chave de API da ExchangeRate-API. O plano gratuito é suficiente.
+### 4. 🧪 Manipulação de JSON com Gson
 
-Configuração
-Clone o Repositório
+- Mapeamento de resposta JSON para objetos Java (records)
+- Uso de `@SerializedName` para acessar os campos corretamente
+- Filtros para extrair apenas as moedas de interesse
 
-git clone https://github.com/seu-usuario/seu-repositorio.git
+### 5. 💰 Conversão de Moedas
 
-Importe a Biblioteca Gson no IntelliJ
+- Lógica para cálculo entre moedas com base na taxa recebida
+- Métodos reutilizáveis e organizados para modularização do código
 
-Abra o projeto no IntelliJ.
+### 6. 🖥️ Interface via Console
 
-Clique com o botão direito na pasta do projeto e selecione Open Module Settings.
+- Menu com opções numéricas
+- Entrada de dados com `Scanner`
+- Laço de repetição até o usuário optar por sair
+- Exibição do resultado final da conversão
 
-Vá para a aba Libraries e clique no + para adicionar uma nova biblioteca From Maven....
+---
 
-Pesquise por com.google.code.gson:gson:2.10.1 e adicione ao projeto.
+## 📸 Demonstração (opcional)
 
-Adicione sua Chave de API
+```bash
+Selecione uma moeda base:
+1 - USD
+2 - EUR
+3 - BRL
 
-Abra o arquivo ConversorDeMoedas.java.
+Digite o valor que deseja converter:
+> 100
 
-Encontre a seguinte linha:
-
-String apiKey = "SUA_CHAVE_API";
-
-Substitua "SUA_CHAVE_API" pela chave que você obteve no site da ExchangeRate-API.
-
-Execução
-Abra o arquivo ConversorDeMoedas.java.
-
-Clique com o botão direito do mouse dentro do editor e selecione Run 'ConversorDeMoedas.main()'.
-
-O programa será executado no console do IntelliJ.
-
-💻 Exemplo de Uso
-Ao iniciar, o programa exibirá o menu principal. Basta digitar o número da opção desejada, pressionar Enter, e em seguida fornecer o valor a ser convertido.
-
-Buscando taxas de câmbio...
-Taxas carregadas com sucesso!
-
-***************************************************
-Bem-vindo ao Conversor de Moedas!
-1) Dólar (USD) =>> Real Brasileiro (BRL)
-2) Real Brasileiro (BRL) =>> Dólar (USD)
-3) Euro (EUR) =>> Real Brasileiro (BRL)
-4) Real Brasileiro (BRL) =>> Euro (EUR)
-5) Dólar (USD) =>> Peso Argentino (ARS)
-6) Peso Argentino (ARS) =>> Dólar (USD)
-7) Sair
-Escolha uma opção válida:
-***************************************************
-1
-Digite o valor que deseja converter: 150
-
-150.00 USD equivalem a 765.00 BRL
+Resultado: 100 USD = 523.45 BRL
